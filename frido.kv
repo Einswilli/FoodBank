@@ -1,0 +1,759 @@
+#:import hex kivy.utils.get_color_from_hex
+#:import Snackbar kivymd.uix.snackbar.Snackbar
+#:import Dialog kivymd.uix.dialog
+ScreenManager:
+	id:scm
+	Screen:
+		name:'welcome'
+		MDBoxLayout:
+			###frido
+			#ffggfrtyjyf
+			orientation:'vertical'
+			md_bg_color:hex('#11101d')
+			size:self.size
+			Widget:
+				size_hint_y:.1
+
+			MDGridLayout:
+				cols:3
+				size_hint:1,.16
+				Widget:
+					size_hint_y:.3
+				MDBoxLayout:
+					orientation:'vertical'
+					size_hint_y:.8
+					size_hint_x:.7
+					padding:"20dp"
+					#pos_hint_x:.45
+					#pos_hint:{'center_x':.5,'center_y':.5}
+					canvas:
+						Color:
+							rgb: hex('#FFFFFF') #if self.state =='normal' else (0,.7,.7,1)
+						RoundedRectangle:
+							pos:self.pos
+							size: self.size#65,65
+							radius:[55,]
+					MDIcon:
+						icon:'food'
+						color:hex('#FD0E31')
+						#pos:self.pos
+						size:65,65#self.size
+						pos_hint:{'center_x':.5,'center_y':.5}
+				Widget:
+					size_hint_y:.3
+			Widget:
+				size_hint_y:.05
+			MDLabel:
+				text:'Food Bank'
+				halign:'center'
+				size_hint_y:.01
+				bold:True
+				font_size:26
+			Widget:
+				size_hint_y:.04
+			MDLabel:
+				text:'Special & Delicious Foods For You'
+				halign:'center'
+				size_hint_y:.01
+				bold:True
+				font_size:9
+				color:hex('#CCCCCC')
+			MDBoxLayout:
+				orientation:'vertical'
+				size_hint:.8,.8
+				pos_hint:{'center_x':.5,'center_y':.5}
+				MDBoxLayout:
+					orientation:'vertical'
+					size:self.size
+					#md_bg_color:hex('#ffffff')
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'15dp'
+						size_hint_y:.2
+						#md_bg_color:hex('#ffffff')
+						pos_hint:{'center_x':.5,'center_y':.5}
+
+						Widget:
+							size_hint_y:.01
+
+						MDFillRoundFlatButton:
+							text:'Login'
+							pos_hint:{"center_x":.5}
+							md_bg_color:hex('#FD0E31')
+							size_hint_x:.6
+							on_press:scm.current='login'
+
+						MDFillRoundFlatButton:
+							text:'Sign up'
+							pos_hint:{"center_x":.5}
+							md_bg_color:hex('#FFFFFF')
+							size_hint_x:.6
+							text_color:hex('#FD0E31')
+						Widget:
+							size_hint_y:.01
+				Widget:
+					size_hint_y:.1
+				MDBoxLayout:
+					orientation:'vertical'
+					size_hint:1,.5
+					pos_hint:{"center_x":.5}
+					#md_bg_color:hex('#FFFFFF')
+					#FitImage:
+						#source:'assets/icons/11.jpg'
+						#size:self.size
+						#radius:[8,]
+					MDBoxLayout:
+						orientation:'horizontal'
+						size_hint:1,.3
+						pos_hint:{"center_x":.5,"center_y":.5}
+					
+						canvas:
+							Color:
+								rgb: hex('#FD0E31') #if self.state =='normal' else (0,.7,.7,1)
+							RoundedRectangle:
+								pos:self.pos
+								size:self.size#(self.size.[0]*0.8),(self.size.[1]*0.6)
+								radius:[11,]
+						MDBoxLayout:
+							orientation:'vertical'
+							spacing:'15dp'
+							padding:'1dp'
+							Widget:
+							MDLabel:
+								text:'15%'
+								halign:'center'
+								font_size:28
+								bold:True
+							MDLabel:
+								text:'Discount'
+								halign:'center'
+								bold:False
+								font_size:15
+								italic:False
+							MDLabel:
+								text:'From Our Restaurant'
+								halign:'center'
+								font_size:10
+								#bold:True
+							
+							Widget:
+						MDBoxLayout:
+							orientatiion:'vertical'
+							size_hint_x:.85
+							#spacing:'5dp'
+							Image:
+								source:'assets/icons/h2.png'
+								size:self.size
+				Widget:
+					size_hint_y:.08
+
+	Screen:
+		name:'login'
+		FitImage:
+			source:'assets/icons/10.jpg'
+			size:self.size
+		MDBoxLayout:
+			orientation:'vertical'
+			size:self.size
+			canvas:
+				Color:
+					rgba:0,0,0,.7
+				RoundedRectangle:
+					size:self.size
+					pos:self.pos
+		MDIconButton:
+			icon:'arrow-left'
+			pos_hint:{'top':1,'left':1}
+			on_press:scm.current='welcome'
+		MDBoxLayout:
+			orientation:'vertical'
+			size_hint:.85,.65
+			padding:'8dp'
+			spacing:'15dp'
+			pos_hint:{'center_x':.5,'center_y':.5}
+			canvas:
+				Color:
+					rgba:1,1,1,.3
+				RoundedRectangle:
+					size:self.size
+					pos:self.pos
+					radius:[15,]
+			Lab:
+				text:'AUTHENTICATION'
+				bold:True
+				halign:'center'#pos_hint_x:.5
+				font_size:20
+                                
+			#Widget:
+				#size_hint_y:.01
+				#height:"4dp"
+
+			Lab:
+				text:'Welcome!'
+				font_size:18
+				halign:'center'
+
+			Lab:
+				text:"Nous devons verifier que c est vraiment vous et que vous etes etudiant a ESGIS"
+				font_style:"Caption"
+				#color:hex('#FD0E31')
+
+			Field1:
+				id:use
+				icon_left:"account-circle"
+				hint_text:'Usrename'
+				size_hint_x:.85
+
+			Field1:
+				id:passwrd
+				icon_left:"lock"
+				hint_text:'Password'
+				size_hint_x:.85
+				password:True
+
+			Lab:
+				text:'je suis d accord avec les conditions d utilisations'
+				font_style:"Caption"
+				halign:'center'
+			#Widget:
+			MDRaisedButton:
+				text:'Login'
+				pos_hint:{"center_x":0.5}
+				size_hint_x:.8
+				md_bg_color:hex('#FD0E31')
+				on_press:scm.current='gridlist'
+				
+	Screen:
+		name:'gridlist'
+		MDBoxLayout:
+			orientation:'vertical'
+			size:self.size
+			spacing:'12dp'
+			md_bg_color:hex('#11101D')
+			MDBoxLayout:
+				orientation:'vertical'
+				size_hint_y:.33
+				#canvas:
+					#Color:
+						#rgba:0,0,0,.5
+					#RoundedRectangle:
+						#size:self.size
+						#pos:self.pos
+						#radius:[0,0,25,25]
+				Screen:
+					FitImage:
+						source:'assets/icons/12.jpg'
+						radius:[0,0,25,25]
+					MDBoxLayout:
+						orientation:'vertical'
+						size:self.size
+						canvas:
+							Color:
+								rgba:0,0,0,.5
+							RoundedRectangle:
+								size:self.size
+								pos:self.pos
+								radius:[0,0,25,25]
+						MDBoxLayout:
+							orientation:'horizontal'
+							size_hint_y:.3
+							#pos_hint:{'top':1}
+							spacing:'10dp'
+							MDIconButton:
+								icon:'arrow-left'
+								pos_hint:{'left':.8}
+								on_press:scm.current='login'
+							MDLabel:
+							MDIconButton:
+								icon:'magnify'
+								pos_hint_x:{'center_x':.8}
+								on_press:scm.current='list'
+						MDBoxLayout:
+							size_hint_y:.9
+							orientation:'vertical'
+							MDLabel:
+								text:'Different\n Kind Of Food'
+								halign:'center'
+								font_size:24
+								bold:False
+								pos_hint:{'center_y':.5}
+								color:hex('#FFFFFF')
+					
+					
+			MDBoxLayout:
+				orientation:'vertical'
+				size_hint_y:.67
+				padding:'5dp'
+				spacing:'5dp'
+				MDLabel:
+					text:'FastFoods .....'
+					bold:True
+					color:hex('#FFFFFF')
+					font_size:16
+					height:'30dp'
+					size_hint_y:.08
+				
+				MDBoxLayout:
+					orientation:'vertical'
+					size_hint:1,1#root.size[1]*.7
+					padding:'5dp'
+						
+					MDBoxLayout:
+						orientation:'vertical'
+						size:self.size
+						ScrollabkeGrid:
+							size:self.size
+							#cols:3
+							#spacing:'5dp'
+							#orientation:'vertical'
+							
+					
+									
+						
+	Screen:
+		name:'list'
+		MDBoxLayout:
+			orientation:'vertical'
+			spacing:'10dp'
+			md_bg_color:hex('#11101D')
+			size:self.size
+			MDBoxLayout:
+				size_hint:1,.08
+				pos_hint:{'top':0}
+				#md_bg_color:hex('#FFFFFF')
+				MDIconButton:
+					icon:'arrow-left'
+					pos_hint:{'left':.8}
+					on_press:scm.current='gridlist'
+				MDLabel:
+				MDIconButton:
+					icon:'grid'
+					pos_hint_x:{'center_x':.8}
+					on_press:scm.current='gridlist'
+			MDBoxLayout:
+				orientation:'vertical'
+				size_hint_y:.9
+				padding:'8dp'
+				#md_bg_color:hex('#FFFFFF')
+				MDBoxLayout:
+					orientation:'vertical'
+					size_hint:1,.08
+					padding:'8dp'
+					MDBoxLayout:
+						orientation:'horizontal'
+						size:self.size
+						pos:self.pos
+						#rows:1
+						spacing:'20dp'
+						MDBoxLayout:
+							orientation:'vertical'
+							size_hint_x:.8
+							pos:self.pos
+							padding:'10dp'
+							Field1:
+								icon_right:'magnify'
+								size_hint_x:1
+								height:'40dp'
+								pos_hint:{'center_y':.5}
+								hint_text:'search...'
+								hint_text_color:('#11101D')
+								normal_color:hex('#FFFFFF')
+								color_active:hex('#FFFFFF')
+								icon_right_color:hex('#11101D')
+								color:hex('#11101D')
+						MDBoxLayout:
+							size_hint_x:.2
+							MDIconButton:
+								icon:'cart'
+								on_press:#Do your action here!
+				MDBoxLayout:
+					orientation:'vertical'
+					size_hint_y:.82
+					padding:'8dp'
+					ScrollView:
+						size:self.size
+						MDList:
+							size:self.size
+							Item:
+								text:'[size=16][b]Steck[/b][/size]'
+								secondary_text:'[size=11]Food Description here[/size]'
+								tertiary_text:'[size=14][b]price $25[/b][/size]'
+								tertiary_text_color:hex('#FD0E31')
+								#image:'assets/icons/meat.png'
+								#pos:self.pos
+								LImage:
+									height:150
+									margin:'6dp'
+									image:'assets/icons/meat.png'
+							Item:
+								text:'[size=16][b]Basmati Rice[/b][/size]'
+								secondary_text:'[size=11]Food Description here[/size]'
+								tertiary_text:'[size=14][b]price $75[/b][/size]'
+								tertiary_text_color:hex('#FD0E31')
+								#img:'assets/icons/basmati-rice.png'
+								#pos:self.pos
+								LImage:
+									height:150
+									image:'assets/icons/basmati-rice.png'
+							Item:
+								text:'[size=16][b]Black Perper Powder[/b][/size]'
+								secondary_text:'[size=11]Food Description here[/size]'
+								tertiary_text:'[size=14][b]price $25[/b][/size]'
+								tertiary_text_color:hex('#FD0E31')
+								#img:'assets/icons/meat.png'
+								#pos:self.pos
+								LImage:
+									height:150
+									image:'assets/icons/bpp.png'
+							Item:
+								text:'[size=16][b]Fried Chicken[/b][/size]'
+								secondary_text:'[size=11]Food Description here[/size]'
+								tertiary_text:'[size=14][b]price $25[/b][/size]'
+								tertiary_text_color:hex('#FD0E31')
+								#img:'assets/icons/meat.png'
+								#pos:self.pos
+								LImage:
+									height:150
+									image:'assets/icons/h2.png'
+							Item:
+								text:'[size=16][b]Wines[/b][/size]'
+								secondary_text:'[size=11]Food Description here[/size]'
+								tertiary_text:'[size=14][b]price $25[/b][/size]'
+								tertiary_text_color:hex('#FD0E31')
+								#img:'assets/icons/meat.png'
+								#pos:self.pos
+								LImage:
+									height:150
+									image:'assets/icons/all.png'
+																		
+<ImgRect@Screen>:
+	source:''
+	text:'Different Kind Of Food'
+	licon:'arrow-left'
+	lpage:''
+	rpage:''
+	ricon:'magnify'
+	rad:[0,0,25,25]
+	fs:20
+	
+<Custcard@MDCard>
+	orientation:'vertical'
+	md_bg_color:hex('#363D3F2D')
+	padding:'5dp'
+	spacing:'5dp'
+	radius:dp(10)
+	ripple_behavior:True
+	image:''
+	text:''
+	price:'$25'
+				
+	Image:
+		source:root.image
+								
+	MDBoxLayout:
+		orientation:'vertical'
+		spacing:'4dp' 
+		MDLabel:
+			halign:'center'
+			text:root.text
+			font_size:14
+		MDLabel:
+			halign:'center'
+			text:root.price
+			font_size:14
+
+<ScrollabkeGrid@MDFloatLayout>:
+	MDBoxLayout:
+		spacing:'10dp'
+		orientation:'vertical'
+		padding:'10dp'
+		ScrollView:
+			size:self.size
+			MDGridLayout:
+				cols:3
+				row_default_height:'120dp'
+				row_force_default_height:True
+				size_hint_y:None
+				#size_hint_x:self.size[0]
+				#adaptive_height:True
+				spacing:5,5
+				
+				#USE CUSTCARDS FOR DYNAMIC DATA ADDING
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/h2.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$25'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/meat.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$85'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/bpp.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$45'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/banana.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$12'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/about-img.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$21'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/basmati-rice.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$53'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/dish-2.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$23'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/hm1.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$88'
+							font_size:14
+							color:hex('#FD0E31')
+				MDCard:
+					orientation:'vertical'
+					md_bg_color:hex('#363D3F2D')
+					orientation:'vertical'
+					ripple_behavior:True
+					radius:dp(10)
+					Image:
+						source:'assets/icons/cw.png'
+					MDBoxLayout:
+						orientation:'vertical'
+						spacing:'4dp' 
+						MDLabel:
+							halign:'center'
+							text:'FoodName'
+							font_size:14
+						MDLabel:
+							halign:'center'
+							text:'$55'
+							font_size:14
+							color:hex('#FD0E31')
+				#USAGE
+				#Custcard:
+					#text:'FoodName'
+					#image:'assets/icons/h2.png'
+		#Widget:
+			#height:'4dp'
+				
+
+<LImage@ILeftBodyTouch+MDBoxLayout>:
+	image:''
+	_txt_left_pad:'80dp'
+	MDBoxLayout:
+		size:self.size
+		padding:'5dp'
+		Image:
+			size:self.size
+			source:root.image
+
+<Item@ThreeLineAvatarListItem>:
+	image:''
+	t1:''
+	t2:''
+	t3:''
+	size_hint_x:1
+	#MDBoxLayout:
+		#height:'80dp'
+		#size:self.size
+		#orientation:'horizontal'
+		#spacing:'8dp'
+		#adaptive_height:True
+		#MDBoxLayout:
+			#size_hint_x:.25
+			#Image:
+				#size:self.size
+				#source:root.image
+		#MDBoxLayout:
+			#size_hint_x:.75
+			#orientation:'vertical'
+			#spacing:'2dp'
+			#Widget:
+				#height:'5dp'
+			#Lab:
+				#text:root.t1
+				#color:hex('#FFFFFF')
+				#font_size:18
+				#bold:True
+			#Lab:
+				#text:root.t2
+				#color:hex('#FFFFFF')
+				#font_size:13
+				#bold:False
+
+			#MDBoxLayout:
+				#orientation:'horizontal'
+				#size_hint_y:.3
+				#size_hint_y:.4
+				#Lab:	
+					#text:root.t3
+					#color:hex('#FD0E31')
+					#font_size:14
+					#bold:True
+					#pos_hint:{'center_y':.5}
+
+				#MDRaisedButton:
+					#text:'add to card'
+					#md_bg_color:hex('#FD0E31')
+					#size_hint_y:.9
+					#pos_hint:{'center_y':.5}
+			#Widget:
+				#height:'5dp'
+
+<Lab@MDLabel>:
+    size_hint_y:None
+    height:self.texture_size[1]
+    #theme_text_color:"white"
+    #font_color:'#ffffff'
+    #text_color:'#ffffff'
+            
+<Field1@MDTextFieldRound>:
+	pos_hint:{"center_x":0.5}
+	normal_color:1,1,1,0.8
+	mode:'fill'
+	hint_text_color:hex('#11101D')
+	line_color_focus:hex('#FD0E31')
+	#color_active:hex('#FD0E31')
+	icon_left_color:hex('#11101D')#.5,.5,.5,1
+                        
+<Titre@MDLabel>:
+    size_hint_y:None
+    font_size:38
+    bold:True
+    height:self.texture_size[1]
+    #theme_text_color:"Primary"
+    #font_color:'#ffffff'
+    color:'#FD0E31'
+		
+			
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
